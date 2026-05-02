@@ -10,9 +10,9 @@
 
 | # | Story | Status |
 |---|---|---|
-| RT-001 | Create GitHub repo `racetales` with folder structure from README | ⬜ |
-| RT-002 | Set up Cloudflare Pages project connected to GitHub repo | ⬜ |
-| RT-003 | Point racetales.com DNS to Cloudflare (update Hostinger nameservers) | ⬜ |
+| RT-001 | Create GitHub repo `racetales` with folder structure from README | done |
+| RT-002 | Set up Cloudflare Pages project connected to GitHub repo | done |
+| RT-003 | Point racetales.com DNS to Cloudflare (update Hostinger nameservers) | done |
 | RT-004 | Configure racetales.com as custom domain in Cloudflare Pages | ⬜ |
 | RT-005 | Export Grand Canyon HTML from Claude design, verify R2 URLs | ⬜ |
 | RT-006 | Add Grand Canyon page to repo at `/adventures/grand-canyon-2026/index.html` | ⬜ |
@@ -69,3 +69,4 @@
 | 2026-05-02 | Photos in Cloudflare R2, not embedded | URL references keep HTML files small and photos cacheable at CDN edge |
 | 2026-05-02 | DNS: Cloudflare (nameservers from Hostinger) | Domain stays at Hostinger registrar, DNS managed in CF for Pages integration |
 | 2026-05-02 | Authoring tool: Claude design | Proven workflow from Grand Canyon MVP; visual, photo-driven, exports HTML |
+| 2026-05-02 | DNS transfer initiated from Hostinger to Cloudflare | Propagation pending, up to 24hrs |

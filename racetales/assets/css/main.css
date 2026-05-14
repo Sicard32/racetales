@@ -415,9 +415,7 @@ h4, h5, h6 {
 }
 
 .nav-dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
+  position: fixed;
   min-width: 200px;
   background: var(--bg-elevated);
   border: 1px solid var(--border);
@@ -431,7 +429,7 @@ h4, h5, h6 {
   transition: opacity var(--duration) var(--ease), transform var(--duration) var(--ease);
 }
 
-.nav-year.open .nav-dropdown {
+.nav-dropdown.open {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;

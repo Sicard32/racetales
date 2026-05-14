@@ -59,10 +59,6 @@
             <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
-        <div class="nav-dropdown" id="dropdown-2026" role="menu">
-          <div class="nav-dropdown-year">2026</div>
-          <a href="adventures/grand-canyon-2026/" role="menuitem">Grand Canyon</a>
-        </div>
       </div>
 
       <div class="nav-year" id="nav-year-2025">
@@ -72,11 +68,6 @@
             <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
-        <div class="nav-dropdown" id="dropdown-2025" role="menu">
-          <div class="nav-dropdown-year">2025</div>
-          <a href="adventures/chamonix-2025/" role="menuitem">Chamonix</a>
-          <a href="adventures/san-juans-2025/" role="menuitem">San Juans</a>
-        </div>
       </div>
     </div>
 
@@ -94,6 +85,19 @@
     </button>
   </div>
 </nav>
+
+<!-- ═══════════════════════════════════════════════════════════
+     NAV DROPDOWNS (outside #nav to escape backdrop-filter containing block)
+═══════════════════════════════════════════════════════════ -->
+<div class="nav-dropdown" id="dropdown-2026" role="menu">
+  <div class="nav-dropdown-year">2026</div>
+  <a href="adventures/grand-canyon-2026/" role="menuitem">Grand Canyon</a>
+</div>
+<div class="nav-dropdown" id="dropdown-2025" role="menu">
+  <div class="nav-dropdown-year">2025</div>
+  <a href="adventures/chamonix-2025/" role="menuitem">Chamonix</a>
+  <a href="adventures/san-juans-2025/" role="menuitem">San Juans</a>
+</div>
 
 <!-- Mobile drawer -->
 <div id="nav-drawer" role="dialog" aria-label="Mobile navigation" aria-modal="true">
@@ -446,24 +450,33 @@
         w.classList.remove('open');
         w.querySelector('.nav-year-btn').setAttribute('aria-expanded', 'false');
       });
+      document.querySelectorAll('.nav-dropdown').forEach(function (d) {
+        d.classList.remove('open');
+      });
     }
 
-    // Desktop year dropdowns
+    // Desktop year dropdowns — dropdowns live outside #nav to avoid the
+    // backdrop-filter containing-block issue; position via getBoundingClientRect.
     document.querySelectorAll('.nav-year').forEach(function (wrap) {
-      const btn      = wrap.querySelector('.nav-year-btn');
-      const dropdown = wrap.querySelector('.nav-dropdown');
+      const btn        = wrap.querySelector('.nav-year-btn');
+      const dropdownId = btn.getAttribute('aria-controls');
+      const dropdown   = document.getElementById(dropdownId);
 
       btn.addEventListener('click', function (e) {
         e.stopPropagation();
         const isOpen = wrap.classList.contains('open');
         closeAll();
         if (!isOpen) {
+          const rect = btn.getBoundingClientRect();
+          dropdown.style.top  = (rect.bottom + 4) + 'px';
+          dropdown.style.left = rect.left + 'px';
           wrap.classList.add('open');
           btn.setAttribute('aria-expanded', 'true');
+          dropdown.classList.add('open');
         }
       });
 
-      // Prevent clicks inside the dropdown from bubbling to the document close handler
+      // Prevent clicks inside the dropdown from closing it
       dropdown.addEventListener('click', function (e) {
         e.stopPropagation();
       });

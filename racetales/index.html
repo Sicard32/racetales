@@ -49,64 +49,8 @@
 <nav id="nav" aria-label="Main navigation">
   <div class="container nav-inner">
     <a href="/" class="nav-logo" aria-label="RaceTales home">Race<span>Tales</span></a>
-
-    <!-- Desktop links -->
-    <div class="nav-links" role="navigation">
-      <div class="nav-year" id="nav-year-2026">
-        <button class="nav-year-btn" aria-expanded="false" aria-haspopup="true" aria-controls="dropdown-2026">
-          2026
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-            <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-      </div>
-
-      <div class="nav-year" id="nav-year-2025">
-        <button class="nav-year-btn" aria-expanded="false" aria-haspopup="true" aria-controls="dropdown-2025">
-          2025
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-            <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- Mobile hamburger -->
-    <button
-      class="nav-menu-btn"
-      id="nav-hamburger"
-      aria-expanded="false"
-      aria-controls="nav-drawer"
-      aria-label="Open navigation menu"
-    >
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
   </div>
 </nav>
-
-<!-- ═══════════════════════════════════════════════════════════
-     NAV DROPDOWNS (outside #nav to escape backdrop-filter containing block)
-═══════════════════════════════════════════════════════════ -->
-<div class="nav-dropdown" id="dropdown-2026" role="menu">
-  <div class="nav-dropdown-year">2026</div>
-  <a href="adventures/grand-canyon-2026/" role="menuitem">Grand Canyon</a>
-</div>
-<div class="nav-dropdown" id="dropdown-2025" role="menu">
-  <div class="nav-dropdown-year">2025</div>
-  <a href="adventures/chamonix-2025/" role="menuitem">Chamonix</a>
-  <a href="adventures/san-juans-2025/" role="menuitem">San Juans</a>
-</div>
-
-<!-- Mobile drawer -->
-<div id="nav-drawer" role="dialog" aria-label="Mobile navigation" aria-modal="true">
-  <div class="drawer-year-heading">2026</div>
-  <a href="adventures/grand-canyon-2026/">Grand Canyon</a>
-  <div class="drawer-year-heading">2025</div>
-  <a href="adventures/chamonix-2025/">Chamonix</a>
-  <a href="adventures/san-juans-2025/">San Juans</a>
-</div>
 
 <!-- ═══════════════════════════════════════════════════════════
      HERO
@@ -442,72 +386,6 @@
       DATE_MAP[key].push(adv);
     });
   });
-
-  // ── Navigation ────────────────────────────────────────────
-  function setupNav() {
-    function closeAll() {
-      document.querySelectorAll('.nav-year').forEach(function (w) {
-        w.classList.remove('open');
-        w.querySelector('.nav-year-btn').setAttribute('aria-expanded', 'false');
-      });
-      document.querySelectorAll('.nav-dropdown').forEach(function (d) {
-        d.classList.remove('open');
-        d.style.top  = '';
-        d.style.left = '';
-      });
-    }
-
-    // Desktop year dropdowns — dropdowns live outside #nav to avoid the
-    // backdrop-filter containing-block issue; position via getBoundingClientRect.
-    document.querySelectorAll('.nav-year').forEach(function (wrap) {
-      const btn        = wrap.querySelector('.nav-year-btn');
-      const dropdownId = btn.getAttribute('aria-controls');
-      const dropdown   = document.getElementById(dropdownId);
-
-      btn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        const isOpen = wrap.classList.contains('open');
-        closeAll();
-        if (!isOpen) {
-          const rect = btn.getBoundingClientRect();
-          dropdown.style.top  = (rect.bottom + 4) + 'px';
-          dropdown.style.left = rect.left + 'px';
-          wrap.classList.add('open');
-          btn.setAttribute('aria-expanded', 'true');
-          dropdown.classList.add('open');
-        }
-      });
-
-      // Prevent clicks inside the dropdown from closing it
-      dropdown.addEventListener('click', function (e) {
-        e.stopPropagation();
-      });
-    });
-
-    document.addEventListener('click', closeAll);
-
-    // Mobile hamburger
-    const hamburger = document.getElementById('nav-hamburger');
-    const drawer    = document.getElementById('nav-drawer');
-
-    hamburger.addEventListener('click', function () {
-      const isOpen = hamburger.classList.contains('open');
-      hamburger.classList.toggle('open');
-      drawer.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', String(!isOpen));
-    });
-
-    // Close drawer when a link is clicked
-    drawer.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', function () {
-        hamburger.classList.remove('open');
-        drawer.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
-      });
-    });
-  }
-
-  setupNav();
 
   // ── Calendar ──────────────────────────────────────────────
   const MONTH_NAMES = [

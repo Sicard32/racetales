@@ -338,46 +338,81 @@
   });
 
   // ── Adventure data ────────────────────────────────────────
-  // Dates: update placeholders when actual dates are confirmed.
-  // Grand Canyon: confirmed April 25–29, 2026
-  // Chamonix: ~August 25–27, 2025 (UTMB/CCC week — confirm exact date)
-  // San Juans: ~July 12–15, 2025 (confirm exact date)
+  // All months are 0-indexed (Jan=0 … Dec=11).
   const ADVENTURES = [
     {
       id:       'canyon',
       title:    'Rim to River, Through the Box, and Back',
       location: 'Grand Canyon, Arizona',
       year:     2026,
-      dates:    [[2026, 3, 25]], // April 25 (month is 0-indexed)
+      dates:    [[2026, 3, 25]],
       color:    '#d4845a',
       desc:     'A one-day descent from the South Rim to the Colorado River through Phantom Ranch and the Box, then back up before dark.',
       href:     'adventures/grand-canyon-2026/',
       status:   'past',
       label:    'April 25, 2026',
+      calLabel: 'Grand Canyon',
+    },
+    {
+      id:       'loon',
+      title:    'Loon Mountain Training Camp',
+      location: 'Lincoln, NH',
+      year:     2026,
+      dates:    [[2026, 4, 22], [2026, 4, 23], [2026, 4, 24], [2026, 4, 25]],
+      color:    '#6db89b',
+      desc:     'Pre-Chamonix vertical training camp. Franconia Ridge. 15–20 mi / 5,000–7,000 ft.',
+      href:     null,
+      status:   'future',
+      label:    'May 22–25, 2026',
+      calLabel: 'Loon Camp',
     },
     {
       id:       'chamonix',
-      title:    '90km du Mont-Blanc',
+      title:    'Chamonix — 90km du Mont-Blanc',
       location: 'Chamonix, France',
-      year:     2025,
-      dates:    [[2025, 7, 25], [2025, 7, 26], [2025, 7, 27]], // Aug 25–27
+      year:     2026,
+      dates:    [[2026, 5, 26]],
       color:    '#7aadca',
-      desc:     'The CCC — 100km of technical trail around the Mont-Blanc massif, from Courmayeur to Chamonix.',
-      href:     'adventures/chamonix-2025/',
-      status:   'past',
-      label:    'August 25–27, 2025',
+      desc:     '90km ultra race through the Mont-Blanc massif. ~5AM start, Jaimie crewing.',
+      href:     null,
+      status:   'future',
+      label:    'June 26, 2026',
+      calLabel: 'Chamonix',
     },
     {
-      id:       'sanjuans',
-      title:    'Colorado San Juan Mountains',
-      location: 'San Juan Mountains, Colorado',
-      year:     2025,
-      dates:    [[2025, 6, 12], [2025, 6, 13], [2025, 6, 14]], // July 12–14
-      color:    '#7faa6c',
-      desc:     'A multi-day traverse through high alpine tundra and exposed ridgelines above 13,000ft.',
-      href:     'adventures/san-juans-2025/',
-      status:   'past',
-      label:    'July 12–15, 2025',
+      id:       'italy',
+      title:    'Italy — Nice, Milan, Venice, Florence, Rome',
+      location: 'Southern France & Italy',
+      year:     2026,
+      dates:    [
+        [2026, 6, 19], [2026, 6, 20], [2026, 6, 21], [2026, 6, 22], [2026, 6, 23],
+        [2026, 6, 24], [2026, 6, 25], [2026, 6, 26], [2026, 6, 27], [2026, 6, 28],
+        [2026, 6, 29], [2026, 6, 30], [2026, 6, 31],
+        [2026, 7,  1], [2026, 7,  2],
+      ],
+      color:    '#e8a87c',
+      desc:     'Two weeks through Southern France and Italy with Luke.',
+      href:     null,
+      status:   'future',
+      label:    'July 19 – August 2, 2026',
+      calLabel: 'Italy',
+    },
+    {
+      id:       'dolomites',
+      title:    'Dolomites Adventure',
+      location: 'Italian Dolomites',
+      year:     2026,
+      dates:    [
+        [2026, 7, 13], [2026, 7, 14], [2026, 7, 15], [2026, 7, 16], [2026, 7, 17],
+        [2026, 7, 18], [2026, 7, 19], [2026, 7, 20], [2026, 7, 21], [2026, 7, 22],
+        [2026, 7, 23],
+      ],
+      color:    '#a394cf',
+      desc:     'Tre Cime, Seceda, Sella Ronda. Running and hiking with Jaimie.',
+      href:     null,
+      status:   'future',
+      label:    'August 13–23, 2026',
+      calLabel: 'Dolomites',
     },
   ];
 
@@ -512,9 +547,7 @@
       events.forEach(function (adv) {
         const ev = document.createElement('div');
         ev.className = 'cal-event ' + adv.id + (adv.status === 'future' ? ' future' : '');
-        ev.textContent = adv.id === 'canyon' ? 'Grand Canyon'
-          : adv.id === 'chamonix' ? 'Chamonix'
-          : 'San Juans';
+        ev.textContent = adv.calLabel;
         ev.setAttribute('tabindex', '0');
         ev.setAttribute('role', 'button');
         ev.setAttribute('aria-label', adv.title);

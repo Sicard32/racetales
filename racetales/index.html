@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RaceTales — Adventure Portfolio</title>
+  <meta name="description" content="A cinematic portfolio of trail runs and mountain adventures.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     LOGIN GATE
+     Change PASSWORD below before sharing the site.
+═══════════════════════════════════════════════════════════ -->
+<div id="login-gate" role="dialog" aria-label="Site access" aria-modal="true">
+  <div class="gate-grain" aria-hidden="true"></div>
+  <div class="gate-inner">
+    <div class="gate-logo">Race<span>Tales</span></div>
+    <p class="gate-tagline">Enter to explore</p>
+    <form class="gate-form" id="gate-form" novalidate>
+      <div class="gate-input-wrap">
+        <input
+          type="password"
+          id="gate-password"
+          class="gate-input"
+          placeholder="Password"
+          autocomplete="current-password"
+          autofocus
+          aria-label="Site password"
+        >
+      </div>
+      <button type="submit" class="gate-btn">Enter</button>
+      <p class="gate-error" id="gate-error" role="alert" aria-live="polite"></p>
+    </form>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════════════════════ -->
+<nav id="nav" aria-label="Main navigation">
+  <div class="container nav-inner">
+    <a href="/" class="nav-logo" aria-label="RaceTales home">Race<span>Tales</span></a>
+
+    <!-- Desktop links -->
+    <div class="nav-links" role="navigation">
+      <div class="nav-year" id="nav-year-2026">
+        <button class="nav-year-btn" aria-expanded="false" aria-haspopup="true" aria-controls="dropdown-2026">
+          2026
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="nav-dropdown" id="dropdown-2026" role="menu">
+          <div class="nav-dropdown-year">2026</div>
+          <a href="adventures/grand-canyon-2026/" role="menuitem">Grand Canyon</a>
+        </div>
+      </div>
+
+      <div class="nav-year" id="nav-year-2025">
+        <button class="nav-year-btn" aria-expanded="false" aria-haspopup="true" aria-controls="dropdown-2025">
+          2025
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="nav-dropdown" id="dropdown-2025" role="menu">
+          <div class="nav-dropdown-year">2025</div>
+          <a href="adventures/chamonix-2025/" role="menuitem">Chamonix</a>
+          <a href="adventures/san-juans-2025/" role="menuitem">San Juans</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile hamburger -->
+    <button
+      class="nav-menu-btn"
+      id="nav-hamburger"
+      aria-expanded="false"
+      aria-controls="nav-drawer"
+      aria-label="Open navigation menu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile drawer -->
+<div id="nav-drawer" role="dialog" aria-label="Mobile navigation" aria-modal="true">
+  <div class="drawer-year-heading">2026</div>
+  <a href="adventures/grand-canyon-2026/">Grand Canyon</a>
+  <div class="drawer-year-heading">2025</div>
+  <a href="adventures/chamonix-2025/">Chamonix</a>
+  <a href="adventures/san-juans-2025/">San Juans</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════════════ -->
+<section id="hero" aria-label="Hero">
+  <div class="container">
+    <div class="hero-content">
+      <p class="hero-eyebrow fade-up">Adventures in the wild</p>
+      <h1 class="hero-title fade-up">Run far.<br><em>Tell the story.</em></h1>
+      <p class="hero-desc fade-up">
+        A personal archive of long-distance trail runs, alpine crossings,
+        and the landscapes that make them matter.
+      </p>
+      <div class="hero-scroll-hint fade-up" aria-hidden="true">Scroll to explore</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CALENDAR
+═══════════════════════════════════════════════════════════ -->
+<section id="calendar-section" aria-label="Adventure calendar">
+  <div class="container">
+    <header class="section-header reveal">
+      <div>
+        <p class="section-eyebrow">Timeline</p>
+        <h2 class="section-title">Adventure Calendar</h2>
+      </div>
+    </header>
+
+    <div class="calendar-wrapper reveal">
+      <div class="calendar-nav">
+        <button class="cal-nav-btn" id="cal-prev" aria-label="Previous month">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M11 4l-5 5 5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <span class="cal-month-label" id="cal-month-label" aria-live="polite"></span>
+        <button class="cal-nav-btn" id="cal-next" aria-label="Next month">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M7 4l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="calendar-days-header" aria-hidden="true">
+        <span>Sun</span><span>Mon</span><span>Tue</span>
+        <span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+      </div>
+
+      <div class="calendar-grid" id="calendar-grid" role="grid" aria-label="Calendar days"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ADVENTURE CARD GRID
+═══════════════════════════════════════════════════════════ -->
+<section id="adventures-section" aria-label="All adventures">
+  <div class="container">
+    <header class="section-header reveal">
+      <div>
+        <p class="section-eyebrow">The full archive</p>
+        <h2 class="section-title">All Adventures</h2>
+      </div>
+    </header>
+
+    <div class="adventures-grid" id="adventures-grid">
+
+      <!-- Grand Canyon 2026 -->
+      <article class="adventure-card canyon reveal" data-adventure="canyon">
+        <div class="adventure-card-thumb">
+          <img
+            src="https://pub-120e45357f0645b2b667f41948cce278.r2.dev/grand-canyon-2026/morning1.jpeg"
+            alt="Grand Canyon rim at dawn"
+            loading="lazy"
+          >
+          <div class="adventure-card-thumb-overlay" aria-hidden="true"></div>
+        </div>
+        <div class="adventure-card-body">
+          <p class="adventure-card-year">2026</p>
+          <h3 class="adventure-card-title">Rim to River, Through the Box, and Back</h3>
+          <p class="adventure-card-location">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M6 1a3.5 3.5 0 0 1 3.5 3.5C9.5 7.5 6 11 6 11S2.5 7.5 2.5 4.5A3.5 3.5 0 0 1 6 1z" stroke="currentColor" stroke-width="1.2"/>
+              <circle cx="6" cy="4.5" r="1" fill="currentColor"/>
+            </svg>
+            Grand Canyon, Arizona
+          </p>
+          <p class="adventure-card-desc">
+            A one-day descent from the South Rim to the Colorado River through Phantom Ranch and the Box, then back up before dark. 22 miles. 4,700ft of vertical.
+          </p>
+          <a href="adventures/grand-canyon-2026/" class="adventure-card-link" aria-label="Read the Grand Canyon adventure">
+            Read the story
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- Chamonix 2025 -->
+      <article class="adventure-card chamonix reveal" data-adventure="chamonix">
+        <div class="adventure-card-thumb">
+          <div class="adventure-card-thumb-gradient" style="background: linear-gradient(135deg, #2c4a5e 0%, #7aadca 50%, #e8eef2 100%);" aria-hidden="true"></div>
+          <div class="adventure-card-thumb-overlay" aria-hidden="true"></div>
+        </div>
+        <div class="adventure-card-body">
+          <p class="adventure-card-year">2025</p>
+          <h3 class="adventure-card-title">90km du Mont-Blanc</h3>
+          <p class="adventure-card-location">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M6 1a3.5 3.5 0 0 1 3.5 3.5C9.5 7.5 6 11 6 11S2.5 7.5 2.5 4.5A3.5 3.5 0 0 1 6 1z" stroke="currentColor" stroke-width="1.2"/>
+              <circle cx="6" cy="4.5" r="1" fill="currentColor"/>
+            </svg>
+            Chamonix, France
+          </p>
+          <p class="adventure-card-desc">
+            The CCC — 100km of technical trail around the Mont-Blanc massif, starting in Courmayeur and finishing under the spires of Chamonix. 6,100m of vertical gain.
+          </p>
+          <a href="adventures/chamonix-2025/" class="adventure-card-link" aria-label="Read the Chamonix adventure">
+            Read the story
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- San Juans 2025 -->
+      <article class="adventure-card sanjuans reveal" data-adventure="sanjuans">
+        <div class="adventure-card-thumb">
+          <div class="adventure-card-thumb-gradient" style="background: linear-gradient(135deg, #1e3320 0%, #7faa6c 55%, #c8d8b8 100%);" aria-hidden="true"></div>
+          <div class="adventure-card-thumb-overlay" aria-hidden="true"></div>
+        </div>
+        <div class="adventure-card-body">
+          <p class="adventure-card-year">2025</p>
+          <h3 class="adventure-card-title">Colorado San Juan Mountains</h3>
+          <p class="adventure-card-location">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M6 1a3.5 3.5 0 0 1 3.5 3.5C9.5 7.5 6 11 6 11S2.5 7.5 2.5 4.5A3.5 3.5 0 0 1 6 1z" stroke="currentColor" stroke-width="1.2"/>
+              <circle cx="6" cy="4.5" r="1" fill="currentColor"/>
+            </svg>
+            San Juan Mountains, Colorado
+          </p>
+          <p class="adventure-card-desc">
+            A multi-day traverse through the heart of the San Juans — high alpine tundra, exposed ridgelines, and wildflower-loaded valleys above 13,000ft.
+          </p>
+          <a href="adventures/san-juans-2025/" class="adventure-card-link" aria-label="Read the San Juans adventure">
+            Read the story
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════════ -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">Race<span>Tales</span></div>
+      <p class="footer-tagline">Run far. Tell the story.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ADVENTURE OVERLAY (calendar click popup)
+═══════════════════════════════════════════════════════════ -->
+<div id="adventure-overlay" role="dialog" aria-modal="true" aria-labelledby="overlay-title">
+  <div class="overlay-backdrop" id="overlay-backdrop"></div>
+  <div class="overlay-card">
+    <button class="overlay-close" id="overlay-close" aria-label="Close">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <div class="overlay-accent" id="overlay-accent"></div>
+    <p class="overlay-label" id="overlay-label"></p>
+    <h3 class="overlay-title" id="overlay-title"></h3>
+    <div class="overlay-meta" id="overlay-meta"></div>
+    <p class="overlay-desc" id="overlay-desc"></p>
+    <div id="overlay-cta"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════════════════════ -->
+<script>
+(function () {
+  'use strict';
+
+  // ── Auth ──────────────────────────────────────────────────
+  // TODO: Change this password before sharing the site.
+  const PASSWORD = 'racetales';
+  const AUTH_KEY = 'rt_auth';
+
+  const gate      = document.getElementById('login-gate');
+  const gateForm  = document.getElementById('gate-form');
+  const gateInput = document.getElementById('gate-password');
+  const gateError = document.getElementById('gate-error');
+
+  function unlock() {
+    gate.classList.add('hidden');
+    setTimeout(() => { gate.style.display = 'none'; }, 500);
+    localStorage.setItem(AUTH_KEY, '1');
+  }
+
+  if (localStorage.getItem(AUTH_KEY)) {
+    gate.style.display = 'none';
+  }
+
+  gateForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const val = gateInput.value.trim();
+    if (val === PASSWORD) {
+      gateError.textContent = '';
+      unlock();
+    } else {
+      gateInput.classList.add('error');
+      gateError.textContent = 'Incorrect password. Try again.';
+      setTimeout(() => gateInput.classList.remove('error'), 500);
+      gateInput.select();
+    }
+  });
+
+  // ── Adventure data ────────────────────────────────────────
+  // Dates: update placeholders when actual dates are confirmed.
+  // Grand Canyon: confirmed April 25–29, 2026
+  // Chamonix: ~August 25–27, 2025 (UTMB/CCC week — confirm exact date)
+  // San Juans: ~July 12–15, 2025 (confirm exact date)
+  const ADVENTURES = [
+    {
+      id:       'canyon',
+      title:    'Rim to River, Through the Box, and Back',
+      location: 'Grand Canyon, Arizona',
+      year:     2026,
+      dates:    [[2026, 3, 25]], // April 25 (month is 0-indexed)
+      color:    '#d4845a',
+      desc:     'A one-day descent from the South Rim to the Colorado River through Phantom Ranch and the Box, then back up before dark.',
+      href:     'adventures/grand-canyon-2026/',
+      status:   'past',
+      label:    'April 25, 2026',
+    },
+    {
+      id:       'chamonix',
+      title:    '90km du Mont-Blanc',
+      location: 'Chamonix, France',
+      year:     2025,
+      dates:    [[2025, 7, 25], [2025, 7, 26], [2025, 7, 27]], // Aug 25–27
+      color:    '#7aadca',
+      desc:     'The CCC — 100km of technical trail around the Mont-Blanc massif, from Courmayeur to Chamonix.',
+      href:     'adventures/chamonix-2025/',
+      status:   'past',
+      label:    'August 25–27, 2025',
+    },
+    {
+      id:       'sanjuans',
+      title:    'Colorado San Juan Mountains',
+      location: 'San Juan Mountains, Colorado',
+      year:     2025,
+      dates:    [[2025, 6, 12], [2025, 6, 13], [2025, 6, 14]], // July 12–14
+      color:    '#7faa6c',
+      desc:     'A multi-day traverse through high alpine tundra and exposed ridgelines above 13,000ft.',
+      href:     'adventures/san-juans-2025/',
+      status:   'past',
+      label:    'July 12–15, 2025',
+    },
+  ];
+
+  // Build a lookup: "YYYY-M-D" → [adventure, ...]
+  const DATE_MAP = {};
+  ADVENTURES.forEach(function (adv) {
+    adv.dates.forEach(function (d) {
+      const key = d[0] + '-' + d[1] + '-' + d[2];
+      if (!DATE_MAP[key]) DATE_MAP[key] = [];
+      DATE_MAP[key].push(adv);
+    });
+  });
+
+  // ── Navigation ────────────────────────────────────────────
+  function setupNav() {
+    // Desktop year dropdowns
+    document.querySelectorAll('.nav-year').forEach(function (wrap) {
+      const btn      = wrap.querySelector('.nav-year-btn');
+      const dropdown = wrap.querySelector('.nav-dropdown');
+
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const isOpen = wrap.classList.contains('open');
+        // Close all
+        document.querySelectorAll('.nav-year').forEach(function (w) {
+          w.classList.remove('open');
+          w.querySelector('.nav-year-btn').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          wrap.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    document.addEventListener('click', function () {
+      document.querySelectorAll('.nav-year').forEach(function (w) {
+        w.classList.remove('open');
+        w.querySelector('.nav-year-btn').setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Mobile hamburger
+    const hamburger = document.getElementById('nav-hamburger');
+    const drawer    = document.getElementById('nav-drawer');
+
+    hamburger.addEventListener('click', function () {
+      const isOpen = hamburger.classList.contains('open');
+      hamburger.classList.toggle('open');
+      drawer.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', String(!isOpen));
+    });
+
+    // Close drawer when a link is clicked
+    drawer.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        hamburger.classList.remove('open');
+        drawer.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  setupNav();
+
+  // ── Calendar ──────────────────────────────────────────────
+  const MONTH_NAMES = [
+    'January','February','March','April','May','June',
+    'July','August','September','October','November','December'
+  ];
+
+  const today   = new Date();
+  let calYear   = today.getFullYear();
+  let calMonth  = today.getMonth();
+
+  function renderCalendar() {
+    const label = document.getElementById('cal-month-label');
+    const grid  = document.getElementById('calendar-grid');
+
+    label.textContent = MONTH_NAMES[calMonth] + ' ' + calYear;
+    grid.innerHTML    = '';
+
+    const firstDay = new Date(calYear, calMonth, 1).getDay(); // 0=Sun
+    const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+    const prevMonthDays = new Date(calYear, calMonth, 0).getDate();
+
+    // Leading empty cells (prev month)
+    for (let i = 0; i < firstDay; i++) {
+      const day = prevMonthDays - firstDay + 1 + i;
+      grid.appendChild(makeCell(day, true, false, null));
+    }
+
+    // Current month cells
+    for (let d = 1; d <= daysInMonth; d++) {
+      const isToday = (
+        calYear  === today.getFullYear() &&
+        calMonth === today.getMonth() &&
+        d === today.getDate()
+      );
+      const key = calYear + '-' + calMonth + '-' + d;
+      const events = DATE_MAP[key] || [];
+      grid.appendChild(makeCell(d, false, isToday, events, calYear, calMonth, d));
+    }
+
+    // Trailing empty cells
+    const total = firstDay + daysInMonth;
+    const trailing = total % 7 === 0 ? 0 : 7 - (total % 7);
+    for (let i = 1; i <= trailing; i++) {
+      grid.appendChild(makeCell(i, true, false, null));
+    }
+  }
+
+  function makeCell(dayNum, otherMonth, isToday, events, year, month, d) {
+    const cell = document.createElement('div');
+    cell.className = 'cal-day' +
+      (otherMonth ? ' other-month' : '') +
+      (isToday    ? ' today'       : '');
+    cell.setAttribute('role', 'gridcell');
+
+    const num = document.createElement('div');
+    num.className = 'cal-day-num';
+    num.textContent = dayNum;
+    cell.appendChild(num);
+
+    if (events && events.length) {
+      events.forEach(function (adv) {
+        const ev = document.createElement('div');
+        ev.className = 'cal-event ' + adv.id + (adv.status === 'future' ? ' future' : '');
+        ev.textContent = adv.id === 'canyon' ? 'Grand Canyon'
+          : adv.id === 'chamonix' ? 'Chamonix'
+          : 'San Juans';
+        ev.setAttribute('tabindex', '0');
+        ev.setAttribute('role', 'button');
+        ev.setAttribute('aria-label', adv.title);
+
+        function openOverlay() { showOverlay(adv); }
+        ev.addEventListener('click', openOverlay);
+        ev.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openOverlay();
+          }
+        });
+
+        cell.appendChild(ev);
+      });
+    }
+
+    return cell;
+  }
+
+  document.getElementById('cal-prev').addEventListener('click', function () {
+    calMonth--;
+    if (calMonth < 0) { calMonth = 11; calYear--; }
+    renderCalendar();
+  });
+
+  document.getElementById('cal-next').addEventListener('click', function () {
+    calMonth++;
+    if (calMonth > 11) { calMonth = 0; calYear++; }
+    renderCalendar();
+  });
+
+  renderCalendar();
+
+  // ── Overlay ───────────────────────────────────────────────
+  const overlay = document.getElementById('adventure-overlay');
+  const oClose  = document.getElementById('overlay-close');
+  const oBackdrop = document.getElementById('overlay-backdrop');
+
+  function showOverlay(adv) {
+    document.getElementById('overlay-accent').style.background = adv.color;
+    document.getElementById('overlay-label').textContent = adv.label;
+    document.getElementById('overlay-title').textContent  = adv.title;
+    document.getElementById('overlay-desc').textContent   = adv.desc;
+
+    const meta = document.getElementById('overlay-meta');
+    meta.innerHTML =
+      '<div class="overlay-meta-item">' +
+        '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1a3.5 3.5 0 0 1 3.5 3.5C9.5 7.5 6 11 6 11S2.5 7.5 2.5 4.5A3.5 3.5 0 0 1 6 1z" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="4.5" r="1" fill="currentColor"/></svg>' +
+        '<span>' + adv.location + '</span>' +
+      '</div>';
+
+    const cta = document.getElementById('overlay-cta');
+    if (adv.status === 'past') {
+      cta.innerHTML =
+        '<a href="' + adv.href + '" class="overlay-btn" style="background:' + adv.color + ';color:#0a0a0b;">' +
+        'Read the full story' +
+        '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        '</a>';
+    } else {
+      cta.innerHTML =
+        '<span class="overlay-coming-soon">' +
+        '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.2"/><path d="M6 4v2.5l1.5 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>' +
+        'Coming Soon' +
+        '</span>';
+    }
+
+    overlay.classList.add('visible');
+    overlay.setAttribute('aria-hidden', 'false');
+    oClose.focus();
+  }
+
+  function hideOverlay() {
+    overlay.classList.remove('visible');
+    overlay.setAttribute('aria-hidden', 'true');
+  }
+
+  oClose.addEventListener('click', hideOverlay);
+  oBackdrop.addEventListener('click', hideOverlay);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && overlay.classList.contains('visible')) {
+      hideOverlay();
+    }
+  });
+
+  // ── Scroll reveal ─────────────────────────────────────────
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      io.observe(el);
+    });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      el.classList.add('visible');
+    });
+  }
+
+})();
+</script>
+</body>
+</html>

@@ -393,6 +393,13 @@
 
   // ── Navigation ────────────────────────────────────────────
   function setupNav() {
+    function closeAll() {
+      document.querySelectorAll('.nav-year').forEach(function (w) {
+        w.classList.remove('open');
+        w.querySelector('.nav-year-btn').setAttribute('aria-expanded', 'false');
+      });
+    }
+
     // Desktop year dropdowns
     document.querySelectorAll('.nav-year').forEach(function (wrap) {
       const btn      = wrap.querySelector('.nav-year-btn');
@@ -401,24 +408,23 @@
       btn.addEventListener('click', function (e) {
         e.stopPropagation();
         const isOpen = wrap.classList.contains('open');
-        // Close all
-        document.querySelectorAll('.nav-year').forEach(function (w) {
-          w.classList.remove('open');
-          w.querySelector('.nav-year-btn').setAttribute('aria-expanded', 'false');
-        });
+        closeAll();
         if (!isOpen) {
+          // Align dropdown's right edge to the button's right edge (viewport-relative)
+          const rect = btn.getBoundingClientRect();
+          dropdown.style.right = (window.innerWidth - rect.right) + 'px';
           wrap.classList.add('open');
           btn.setAttribute('aria-expanded', 'true');
         }
       });
-    });
 
-    document.addEventListener('click', function () {
-      document.querySelectorAll('.nav-year').forEach(function (w) {
-        w.classList.remove('open');
-        w.querySelector('.nav-year-btn').setAttribute('aria-expanded', 'false');
+      // Prevent clicks inside the dropdown from bubbling to the document close handler
+      dropdown.addEventListener('click', function (e) {
+        e.stopPropagation();
       });
     });
+
+    document.addEventListener('click', closeAll);
 
     // Mobile hamburger
     const hamburger = document.getElementById('nav-hamburger');

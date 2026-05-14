@@ -21,12 +21,14 @@
   --border-hover:rgba(255, 255, 255, 0.18);
 
   /* Adventure accent colors */
-  --canyon:      #d4845a;
-  --canyon-dim:  rgba(212, 132, 90, 0.15);
-  --chamonix:    #7aadca;
-  --chamonix-dim:rgba(122, 173, 202, 0.15);
-  --sanjuans:    #7faa6c;
-  --sanjuans-dim:rgba(127, 170, 108, 0.15);
+  --canyon:         #d4845a;
+  --canyon-dim:     rgba(212, 132, 90, 0.15);
+  --chamonix:       #7aadca;
+  --chamonix-dim:   rgba(122, 173, 202, 0.15);
+  --sanjuans:       #7faa6c;
+  --sanjuans-dim:   rgba(127, 170, 108, 0.15);
+  --bloodroot:      #b85968;
+  --bloodroot-dim:  rgba(184, 89, 104, 0.15);
 
   /* Typography */
   --font-serif:  'Playfair Display', Georgia, 'Times New Roman', serif;
@@ -877,10 +879,13 @@ h4, h5, h6 {
 .adventure-card.chamonix .adventure-card-link { color: var(--chamonix); }
 .adventure-card.sanjuans .adventure-card-year,
 .adventure-card.sanjuans .adventure-card-link { color: var(--sanjuans); }
+.adventure-card.bloodroot .adventure-card-year,
+.adventure-card.bloodroot .adventure-card-link { color: var(--bloodroot); }
 
-.adventure-card.canyon  { --card-accent: var(--canyon-dim); }
-.adventure-card.chamonix { --card-accent: var(--chamonix-dim); }
-.adventure-card.sanjuans { --card-accent: var(--sanjuans-dim); }
+.adventure-card.canyon    { --card-accent: var(--canyon-dim); }
+.adventure-card.chamonix  { --card-accent: var(--chamonix-dim); }
+.adventure-card.sanjuans  { --card-accent: var(--sanjuans-dim); }
+.adventure-card.bloodroot { --card-accent: var(--bloodroot-dim); }
 
 .adventure-card::after {
   content: '';

@@ -416,6 +416,8 @@ h4, h5, h6 {
 
 .nav-dropdown {
   position: fixed;
+  top: -9999px;
+  left: -9999px;
   min-width: 200px;
   background: var(--bg-elevated);
   border: 1px solid var(--border);
@@ -424,15 +426,18 @@ h4, h5, h6 {
   box-shadow: var(--shadow-lg);
   z-index: 1000;
   opacity: 0;
+  visibility: hidden;
   transform: translateY(-8px);
   pointer-events: none;
-  transition: opacity var(--duration) var(--ease), transform var(--duration) var(--ease);
+  transition: opacity var(--duration) var(--ease), transform var(--duration) var(--ease), visibility 0s var(--duration);
 }
 
 .nav-dropdown.open {
   opacity: 1;
+  visibility: visible;
   transform: translateY(0);
   pointer-events: auto;
+  transition: opacity var(--duration) var(--ease), transform var(--duration) var(--ease), visibility 0s;
 }
 
 .nav-dropdown-year {

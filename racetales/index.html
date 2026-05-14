@@ -13,6 +13,19 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="assets/css/main.css">
+
+  <style>
+    /* Override: position:fixed inside a backdrop-filter ancestor anchors to
+       the ancestor instead of the viewport, placing items at the origin.
+       Reset to position:absolute relative to .nav-year and lift z-index. */
+    .nav-dropdown {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      left: auto;
+      z-index: 1000;
+    }
+  </style>
 </head>
 <body>
 
@@ -359,12 +372,25 @@
       location: 'Lincoln, NH',
       year:     2026,
       dates:    [[2026, 4, 22], [2026, 4, 23], [2026, 4, 24], [2026, 4, 25]],
-      color:    '#6db89b',
+      color:    '#7faa6c',
       desc:     'Pre-Chamonix vertical training camp. Franconia Ridge. 15–20 mi / 5,000–7,000 ft.',
       href:     null,
       status:   'future',
       label:    'May 22–25, 2026',
       calLabel: 'Loon Camp',
+    },
+    {
+      id:       'mtwashington',
+      title:    'Mount Washington Training Camp',
+      location: 'Mount Washington, NH',
+      year:     2026,
+      dates:    [[2026, 5, 5], [2026, 5, 6], [2026, 5, 7]],
+      color:    '#8b9dc3',
+      desc:     'High-altitude training on the Presidential Range ahead of Chamonix.',
+      href:     null,
+      status:   'future',
+      label:    'June 5–7, 2026',
+      calLabel: 'Mt. Washington',
     },
     {
       id:       'chamonix',
@@ -390,7 +416,7 @@
         [2026, 6, 29], [2026, 6, 30], [2026, 6, 31],
         [2026, 7,  1], [2026, 7,  2],
       ],
-      color:    '#e8a87c',
+      color:    '#c9a96e',
       desc:     'Two weeks through Southern France and Italy with Luke.',
       href:     null,
       status:   'future',
@@ -407,7 +433,7 @@
         [2026, 7, 18], [2026, 7, 19], [2026, 7, 20], [2026, 7, 21], [2026, 7, 22],
         [2026, 7, 23],
       ],
-      color:    '#a394cf',
+      color:    '#a891c7',
       desc:     'Tre Cime, Seceda, Sella Ronda. Running and hiking with Jaimie.',
       href:     null,
       status:   'future',
@@ -445,9 +471,6 @@
         const isOpen = wrap.classList.contains('open');
         closeAll();
         if (!isOpen) {
-          // Align dropdown's right edge to the button's right edge (viewport-relative)
-          const rect = btn.getBoundingClientRect();
-          dropdown.style.right = (window.innerWidth - rect.right) + 'px';
           wrap.classList.add('open');
           btn.setAttribute('aria-expanded', 'true');
         }
@@ -546,7 +569,9 @@
     if (events && events.length) {
       events.forEach(function (adv) {
         const ev = document.createElement('div');
-        ev.className = 'cal-event ' + adv.id + (adv.status === 'future' ? ' future' : '');
+        ev.className = 'cal-event';
+        ev.style.background = adv.color;
+        ev.style.color = '#fff';
         ev.textContent = adv.calLabel;
         ev.setAttribute('tabindex', '0');
         ev.setAttribute('role', 'button');

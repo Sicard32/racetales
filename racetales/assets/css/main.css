@@ -27,8 +27,10 @@
   --chamonix-dim:   rgba(122, 173, 202, 0.15);
   --sanjuans:       #7faa6c;
   --sanjuans-dim:   rgba(127, 170, 108, 0.15);
-  --bloodroot:      #b85968;
-  --bloodroot-dim:  rgba(184, 89, 104, 0.15);
+  --bloodroot:        #b85968;
+  --bloodroot-dim:    rgba(184, 89, 104, 0.15);
+  --switzerland:      #7b9eb5;
+  --switzerland-dim:  rgba(123, 158, 181, 0.15);
 
   /* Typography */
   --font-serif:  'Playfair Display', Georgia, 'Times New Roman', serif;
@@ -881,11 +883,14 @@ h4, h5, h6 {
 .adventure-card.sanjuans .adventure-card-link { color: var(--sanjuans); }
 .adventure-card.bloodroot .adventure-card-year,
 .adventure-card.bloodroot .adventure-card-link { color: var(--bloodroot); }
+.adventure-card.switzerland .adventure-card-year,
+.adventure-card.switzerland .adventure-card-link { color: var(--switzerland); }
 
-.adventure-card.canyon    { --card-accent: var(--canyon-dim); }
-.adventure-card.chamonix  { --card-accent: var(--chamonix-dim); }
-.adventure-card.sanjuans  { --card-accent: var(--sanjuans-dim); }
-.adventure-card.bloodroot { --card-accent: var(--bloodroot-dim); }
+.adventure-card.canyon       { --card-accent: var(--canyon-dim); }
+.adventure-card.chamonix     { --card-accent: var(--chamonix-dim); }
+.adventure-card.sanjuans     { --card-accent: var(--sanjuans-dim); }
+.adventure-card.bloodroot    { --card-accent: var(--bloodroot-dim); }
+.adventure-card.switzerland  { --card-accent: var(--switzerland-dim); }
 
 .adventure-card::after {
   content: '';
